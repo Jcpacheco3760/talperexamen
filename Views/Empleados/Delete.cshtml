@@ -1,0 +1,85 @@
+﻿@model talperexamen.Models.Empleados
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Borrar</h2>
+
+<h3>El empleado será borrado permanentemente del sistema</h3>
+<div>
+
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Nombre
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nombre)
+        </dd>
+
+        <dt>
+            Apellido paterno
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ApPaterno)
+        </dd>
+
+        <dt>
+            Apellido materno
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ApMaterno)
+        </dd>
+
+        <dt>
+            Fecha de nacimiento
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FecNac)
+        </dd>
+
+        <dt>
+            Sueldo
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Sueldo)
+        </dd>
+
+        <dt>
+            Departamento
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Departamentos.Descripcion)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Borrar" id="btn_Borrar" name="btn_Borrar" class="btn btn-danger" onclick="if (confirm('¿Seguro que desea borrar el empleado?') == true) { return true } else { return false}  " />
+            <a href="/Empleados" class="btn btn-default">Cancelar</a>
+        </div>
+    }
+</div>
+
+<script>
+    function Borrar() {
+        var txt;
+        if (confirm("Press a button!") == true) {
+            txt = "You pressed OK!";
+        } else {
+            txt = "You pressed Cancel!";
+        }
+
+    }
+</script>

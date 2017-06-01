@@ -1,0 +1,77 @@
+﻿@model IEnumerable<talperexamen.Models.Empleados>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Listado de empleados</h2>
+
+<p>
+
+    <button onclick="window.location.href='/Empleados/Create'" class="btn btn-primary">Nuevo empleado</button>
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Nombre
+        </th>
+        <th>
+            Apellido Paterno
+        </th>
+        <th>
+            Apellido Materno
+        </th>
+        <th>
+            Fecha
+        </th>
+        <th>
+            Sueldo
+        </th>
+        <th>
+            Departamento
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ApPaterno)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ApMaterno)
+            </td>
+            <td>
+                @item.FecNac.ToShortDateString()
+            </td>
+            <td>
+                $ @Html.DisplayFor(modelItem => item.Sueldo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Departamentos.Descripcion)
+            </td>
+            <td>
+                @Html.ActionLink("Editar", "Edit", new { id = item.Clave_Emp, departamento = item.Departamento }) |
+                @*@Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |*@
+                @Html.ActionLink("Borrar", "Delete", new { id = item.Clave_Emp, departamento = item.Departamento })
+            </td>
+        </tr>
+    }
+
+</table>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js" type="text/javascript"></script>
+<script>
+    $(document).ready(function () {
+
+
+        var fecha = $("FecNac").val();
+        //fecha = fecha.substring(0, 10);
+        $("#FecNac").val(fecha);
+
+
+    });
+</script>
